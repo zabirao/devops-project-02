@@ -1,4 +1,10 @@
-- hosts: all 
+- hosts: all
   tasks:
-   - name : create new container
-     shell: docker run -itd --name cryptoweb -p 9000:80 raoshahzaib/bitcypo
+   - name: stop container
+     shell: docker container stop cryptoweb
+   - name: remove container
+     shell: docker container rm cryptoweb
+   - name: remove docker image
+     shell: docker image rmi raoshahzaib/bitcypo
+   - name: create new container
+     shell: docker container run -itd --name cryptoweb -p 9000:80 raoshahzaib/bitcypo
